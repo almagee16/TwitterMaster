@@ -15,8 +15,8 @@ import KeychainAccess
 class APIManager: SessionManager {
     
     // MARK: TODO: Add App Keys
-    static let consumerKey = "Af1fKeuz9d9dY02J6gPyBVlq7"
-    static let consumerSecret = "mYDth0fahj4TA4ZoCm61gGKgDrexKVQIT1lG8tDBU16pWPMqNS"
+    static let consumerKey = "wdzWjFTgq1lmBCPK8LdSkEHnV"
+    static let consumerSecret = "Nox9khEjzsFiPOnHleK8IS4zHwqc1q6YDSMyTJHMOBPUPbgI5U"
     
     static let requestTokenURL = "https://api.twitter.com/oauth/request_token"
     static let authorizeURL = "https://api.twitter.com/oauth/authorize"
@@ -42,7 +42,6 @@ class APIManager: SessionManager {
                     
                     // MARK: TODO: set User.current, so that it's persisted
                     User.current = user
-                    
                     success()
                 }
             })
@@ -55,6 +54,7 @@ class APIManager: SessionManager {
         clearCredentials()
         
         // TODO: Clear current user by setting it to nil
+        User.current = nil
 
         NotificationCenter.default.post(name: NSNotification.Name("didLogout"), object: nil)
     }
@@ -82,15 +82,15 @@ class APIManager: SessionManager {
 
         // This uses tweets from disk to avoid hitting rate limit. Comment out if you want fresh
         // tweets,
-        if let data = UserDefaults.standard.object(forKey: "hometimeline_tweets") as? Data {
-            let tweetDictionaries = NSKeyedUnarchiver.unarchiveObject(with: data) as! [[String: Any]]
-            let tweets = tweetDictionaries.flatMap({ (dictionary) -> Tweet in
-                Tweet(dictionary: dictionary)
-            })
-            
-            completion(tweets, nil)
-            return
-        }
+//        if let data = UserDefaults.standard.object(forKey: "hometimeline_tweets") as? Data {
+//            let tweetDictionaries = NSKeyedUnarchiver.unarchiveObject(with: data) as! [[String: Any]]
+//            let tweets = tweetDictionaries.flatMap({ (dictionary) -> Tweet in
+//                Tweet(dictionary: dictionary)
+//            })
+//            
+//            completion(tweets, nil)
+//            return
+//        }
         
         
         request(URL(string: "https://api.twitter.com/1.1/statuses/home_timeline.json")!, method: .get)
@@ -119,12 +119,96 @@ class APIManager: SessionManager {
     }
     
     // MARK: TODO: Favorite a Tweet
+    func favorite(with tweet: Tweet, completion: @escaping (Tweet?, Error?) -> ()) {
+        let parameters = ["id": tweet.id]
+        let id : Int64 = tweet.id
+        let idString = String(id)
+        let baseUrl = "https://api.twitter.com/1.1/favorites/create.json?id="
+        let urlString = baseUrl + idString
+        print (urlString)
+        
+        request(urlString, method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseJSON { (response) in
+            if response.result.isSuccess,
+                let tweetDictionary = response.result.value as? [String: Any] {
+                let tweet = Tweet(dictionary: tweetDictionary)
+                completion(tweet,nil)
+            } else {
+                print ("NAH YOU GOT AN ERROR YOU THOUGHT")
+                completion(nil, response.result.error)
+            }
+        }
+    }
+    
     
     // MARK: TODO: Un-Favorite a Tweet
+    func unFavorite(with tweet: Tweet, completion: @escaping (Tweet?, Error?) -> ()) {
+        let parameters = ["id": tweet.id]
+        let id : Int64 = tweet.id
+        let idString = String(id)
+        let baseUrl = "https://api.twitter.com/1.1/favorites/destroy.json?id="
+        let urlString = baseUrl + idString
+        print (urlString)
+        
+        request(urlString, method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseJSON { (response) in
+            print("response: " + String(response.result.isSuccess))
+            if response.result.isSuccess,
+                let tweetDictionary = response.result.value as? [String: Any] {
+                let tweet = Tweet(dictionary: tweetDictionary)
+                completion(tweet,nil)
+            } else {
+                print ("NAH YOU GOT AN ERROR YOU THOUGHT")
+                completion(nil, response.result.error)
+            }
+        }
+    }
     
     // MARK: TODO: Retweet
+    func retweet(with tweet: Tweet, completion: @escaping (Tweet?, Error?) -> ()) {
+        print (User.current?.screenname)
+        let parameters = ["id": tweet.id]
+        let id : Int64 = tweet.id
+        let idString = String(id)
+        let baseUrl = "https://api.twitter.com/1.1/statuses/retweet/"
+        let urlString = baseUrl + idString + ".json"
+        print (urlString)
+        
+        request(urlString, method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseJSON { (response) in
+            print ("this is the error \(response.result.error)")
+            if response.result.isSuccess,
+                let tweetDictionary = response.result.value as? [String: Any] {
+                let tweet = Tweet(dictionary: tweetDictionary)
+                completion(tweet,nil)
+            } else {
+                print ("NAH YOU GOT AN ERROR YOU THOUGHT")
+                completion(nil, response.result.error)
+            }
+        }
+    }
+    
+    
+    
+    
     
     // MARK: TODO: Un-Retweet
+    func unRetweet(with tweet: Tweet, completion: @escaping (Tweet?, Error?) -> ()) {
+        let parameters = ["id": tweet.id]
+        let id : Int64 = tweet.id
+        let idString = String(id)
+        let baseUrl = "https://api.twitter.com/1.1/statuses/unretweet/"
+        let urlString = baseUrl + idString + ".json"
+        print (urlString)
+        
+        request(urlString, method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseJSON { (response) in
+            if response.result.isSuccess,
+                let tweetDictionary = response.result.value as? [String: Any] {
+                let tweet = Tweet(dictionary: tweetDictionary)
+                completion(tweet,nil)
+            } else {
+                print ("NAH YOU GOT AN ERROR YOU THOUGHT")
+                completion(nil, response.result.error)
+            }
+        }
+    }
     
     // MARK: TODO: Compose Tweet
     
@@ -142,7 +226,10 @@ class APIManager: SessionManager {
         }
     }
     
+    
     // MARK: TODO: Get User Timeline
+    
+    
     
     
     //--------------------------------------------------------------------------------//

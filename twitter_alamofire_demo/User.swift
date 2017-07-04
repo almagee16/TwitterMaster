@@ -16,6 +16,7 @@ class User {
     var profilePictureUrl: String
     var dictionary: [String: Any]?
     private static var _current: User?
+    
     static var current: User? {
         get {
             if _current == nil {

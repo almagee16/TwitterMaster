@@ -39,10 +39,31 @@ class Tweet {
         // Convert String to Date
         let date = formatter.date(from: createdAtOriginalString)!
         // Configure output format
-        formatter.dateStyle = .short
-        formatter.timeStyle = .none
-        // Convert Date to String
-        createdAtString = formatter.string(from: date)
+        let interval = -1 * Int(date.timeIntervalSinceNow)
+        if interval < 60 {
+            let intervalString = String(interval)
+            createdAtString = intervalString + "s"
+            
+        } else if interval < 3600 {
+            let intervalString = String(interval / 60)
+            createdAtString = intervalString + "m"
+            
+        } else if interval < 86400 {
+            let intervalString = String(interval / 60 / 60)
+            createdAtString = intervalString + "h"
+            
+        } else {
+            
+            formatter.dateStyle = .short
+            formatter.timeStyle = .none
+            // Convert Date to String
+            createdAtString = formatter.string(from: date)
+        }
+
+        
+        
+        
+        
     }
 }
 

@@ -33,21 +33,51 @@ class TweetCell: UITableViewCell {
     
     var tweet: Tweet! {
         didSet {
+            if tweet.favorited! {
+                favoriteButton.isSelected = true
+            } else {
+                favoriteButton.isSelected = false
+            }
+            
+            if tweet.retweeted {
+                retweetButton.isSelected = true
+            } else {
+                retweetButton.isSelected = false
+
+            }
+            
             tweetTextLabel.text = tweet.text
             usernameLabel.text = tweet.user.screenname
             nameLabel.text = tweet.user.name
             dateLabel.text = tweet.createdAtString
+            
             if tweet.retweetCount != 0 {
-                retweetCountLabel.text = String(tweet.retweetCount)
+                if tweet.retweetCount >= 1000000 {
+                    retweetCountLabel.text = String(tweet.retweetCount / 1000000) + "M"
+                }
+                if tweet.retweetCount >= 1000 {
+                    retweetCountLabel.text = String(tweet.retweetCount / 1000) + "K"
+                } else {
+                    retweetCountLabel.text = String(tweet.retweetCount)
+                }
             } else {
                 retweetCountLabel.text = ""
             }
             
             if tweet.favoriteCount != 0 {
-                favoriteCountLabel.text = String(tweet.favoriteCount!)
+                if tweet.favoriteCount! >= 1000000 {
+                    favoriteCountLabel.text = String(tweet.favoriteCount! / 1000000) + "M"
+                } else if tweet.favoriteCount! >= 1000 {
+                    favoriteCountLabel.text = String(tweet.favoriteCount! / 1000) + "K"
+                } else {
+                    favoriteCountLabel.text = String(tweet.favoriteCount!)
+                }
             } else {
                 favoriteCountLabel.text = ""
             }
+            
+            profileImage.layer.cornerRadius = profileImage.frame.width * 0.1
+            profileImage.layer.masksToBounds = true
             
             let url = URL(string: tweet.user.profilePictureUrl)!
             profileImage.af_setImage(withURL: url)
@@ -80,11 +110,28 @@ class TweetCell: UITableViewCell {
                 retweetCountLabel.text = ""
             }
             
+            APIManager.shared.unRetweet(with: tweet, completion: { (tweet: Tweet?, error: Error?) in
+                if let error = error {
+                    print (error.localizedDescription)
+                } else {
+                    print ("successfully unretweeted")
+                }
+            })
+            
         } else {
             retweetButton.isSelected = true
             // retweet should be INCREMENTED
             tweet.retweetCount = tweet.retweetCount + 1
             retweetCountLabel.text = String(tweet.retweetCount)
+            
+            APIManager.shared.retweet(with: tweet, completion: { (tweet: Tweet?, error: Error?) in
+                if let error = error {
+                    print (error.localizedDescription)
+                } else if let tweet = tweet {
+                    print ("successfully retweeted")
+                }
+            })
+            
         }
     }
     
@@ -100,11 +147,28 @@ class TweetCell: UITableViewCell {
                 favoriteCountLabel.text = ""
             }
             
+            APIManager.shared.unFavorite(with: tweet, completion: { (tweet: Tweet?, error: Error?) in
+                if let error = error {
+                    print (error.localizedDescription)
+                } else {
+                    print ("successfully unfavorited the tweet")
+                }
+            })
+            
         } else {
             favoriteButton.isSelected = true
             // favorite should be INCREMENTED
             tweet.favoriteCount = tweet.favoriteCount! + 1
             favoriteCountLabel.text = String(tweet.favoriteCount!)
+            
+            APIManager.shared.favorite(with: tweet, completion: { (tweet: Tweet?, error: Error?) in
+                if let error = error {
+                    print ("right before here")
+                    print (error.localizedDescription)
+                } else if let tweet = tweet {
+                    print ("successfully favorited the tweet")
+                }
+            })
             
         }
     }

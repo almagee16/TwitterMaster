@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import AlamofireImage
+import RSKPlaceholderTextView
+
 
 class ComposeViewController: UIViewController {
     
@@ -19,7 +22,18 @@ class ComposeViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        textInput.endEditing(false)
+        self.textInput = RSKPlaceholderTextView(frame: CGRect(x: 100, y: 100, width: self.view.frame.width, height: 100))
+        //self.textInput.placeholder = "What's happening?"
+        
+        self.view.addSubview(self.textInput)
+        
+        profileImage.layer.cornerRadius = profileImage.frame.width * 0.1
+        profileImage.layer.masksToBounds = true
+        
+        let user = User.current!
+        let url = URL(string: user.profilePictureUrl)!
+        profileImage.af_setImage(withURL: url)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,7 +44,7 @@ class ComposeViewController: UIViewController {
 //    protocol ComposeViewControllerDelegate {
 //        func did(post: Tweet)
 //    }
-//    
+    
     @IBAction func onClose(_ sender: Any) {
         dismiss(animated: true) { 
             //

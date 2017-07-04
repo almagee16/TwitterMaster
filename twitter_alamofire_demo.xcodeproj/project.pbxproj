@@ -304,13 +304,13 @@
 					};
 					ED1AFD401E942B2500FD4B90 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = CBXAQN69JX;
+						DevelopmentTeam = 392UAJDK5U;
 						ProvisioningStyle = Automatic;
 						TestTargetID = ED1AFD2C1E942B2500FD4B90;
 					};
 					ED1AFD4B1E942B2500FD4B90 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = CBXAQN69JX;
+						DevelopmentTeam = 392UAJDK5U;
 						ProvisioningStyle = Automatic;
 						TestTargetID = ED1AFD2C1E942B2500FD4B90;
 					};
@@ -672,7 +672,7 @@
 				DEVELOPMENT_TEAM = 392UAJDK5U;
 				INFOPLIST_FILE = twitter_alamofire_demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.twitter-alamofire-demo";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.twitter-alamofire-demo-alvin";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -687,7 +687,7 @@
 				DEVELOPMENT_TEAM = 392UAJDK5U;
 				INFOPLIST_FILE = twitter_alamofire_demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.twitter-alamofire-demo";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.twitter-alamofire-demo-alvin";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -699,7 +699,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = CBXAQN69JX;
+				DEVELOPMENT_TEAM = 392UAJDK5U;
 				INFOPLIST_FILE = twitter_alamofire_demoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.twitter-alamofire-demoTests";
@@ -715,7 +715,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = CBXAQN69JX;
+				DEVELOPMENT_TEAM = 392UAJDK5U;
 				INFOPLIST_FILE = twitter_alamofire_demoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.twitter-alamofire-demoTests";
@@ -730,7 +730,7 @@
 			baseConfigurationReference = AA8B2B7251F8A233C7185620 /* Pods-twitter_alamofire_demoUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = CBXAQN69JX;
+				DEVELOPMENT_TEAM = 392UAJDK5U;
 				INFOPLIST_FILE = twitter_alamofire_demoUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.twitter-alamofire-demoUITests";
@@ -745,7 +745,7 @@
 			baseConfigurationReference = F5DCE3E00CF8A60FA5C32798 /* Pods-twitter_alamofire_demoUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = CBXAQN69JX;
+				DEVELOPMENT_TEAM = 392UAJDK5U;
 				INFOPLIST_FILE = twitter_alamofire_demoUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.codepath.twitter-alamofire-demoUITests";
