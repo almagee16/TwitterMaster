@@ -13,11 +13,13 @@ class User {
     
     var name: String
     var screenname: String
-    var profileImage: UIImage?
+    var profilePictureUrl: String
     
     init(dictionary: [String: Any]) {
         name = dictionary["name"] as! String
         screenname = "@" + (dictionary["screen_name"] as! String)
+        profilePictureUrl = dictionary["profile_image_url_https"] as! String
 
+        
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class TweetCell: UITableViewCell {
     
@@ -47,6 +48,10 @@ class TweetCell: UITableViewCell {
             } else {
                 favoriteCountLabel.text = ""
             }
+            
+            let url = URL(string: tweet.user.profilePictureUrl)!
+            profileImage.af_setImage(withURL: url)
+            
             
             
         }
