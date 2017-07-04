@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     
     var tweets: [Tweet] = []
     
@@ -18,6 +18,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     let refreshControl = UIRefreshControl()
     
     // weak var delegate: ComposeViewControllerDelegate?
+    
+    var isMoreDataLoading = false
+    var loadingMoreView:InfiniteScrollActivityView?
 
 
     
@@ -43,6 +46,17 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                 print("Error getting home timeline: " + error.localizedDescription)
             }
         }
+        
+        // Set up Infinite Scroll loading indicator
+        let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: InfiniteScrollActivityView.defaultHeight)
+        loadingMoreView = InfiniteScrollActivityView(frame: frame)
+        loadingMoreView!.isHidden = true
+        tableView.addSubview(loadingMoreView!)
+        
+        var insets = tableView.contentInset
+        insets.bottom += InfiniteScrollActivityView.defaultHeight
+        tableView.contentInset = insets
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -87,6 +101,37 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func didTapPost(_ sender: Any) {
         performSegue(withIdentifier: "composeSegue", sender: self)
         
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (!isMoreDataLoading) {
+            // Calculate the position of one screen length before the bottom of the results
+            let scrollViewContentHeight = tableView.contentSize.height
+            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+            
+            // When the user has scrolled past the threshold, start requesting
+            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging) {
+                
+                isMoreDataLoading = true
+                
+                // Code to load more results
+                APIManager.shared.getNewTweets(with: Int(tweets.last!.id), completion: { (tweets: [Tweet]?, error: Error?) in
+                    if let error = error {
+                        print (error.localizedDescription)
+                    } else if let tweets = tweets {
+                        print ("success")
+                        self.isMoreDataLoading = false
+                        self.loadingMoreView!.stopAnimating()
+                        for tweet in tweets {
+                            self.tweets.append(tweet)
+                        }
+                        self.tableView.reloadData()
+                    } else {
+                        print ("there was not an error, but there are no new tweets")
+                    }
+                })
+            }
+        }
     }
     
     
