@@ -7,13 +7,17 @@
 //
 
 import Foundation
+import UIKit
 
 class User {
     
     var name: String
+    var screenname: String
+    var profileImage: UIImage?
     
     init(dictionary: [String: Any]) {
         name = dictionary["name"] as! String
+        screenname = "@" + (dictionary["screen_name"] as! String)
 
     }
 }

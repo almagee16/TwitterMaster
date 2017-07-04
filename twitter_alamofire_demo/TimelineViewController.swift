@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import Alamofire
 
 class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var tweets: [Tweet] = []
     
     @IBOutlet weak var tableView: UITableView!
+    
+    let refreshControl = UIRefreshControl()
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +27,11 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
+        
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
+        // add refresh control to table view
+        tableView.insertSubview(refreshControl, at: 0)
+
         
         APIManager.shared.getHomeTimeLine { (tweets, error) in
             if let tweets = tweets {
@@ -58,6 +68,39 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func didTapLogout(_ sender: Any) {
         APIManager.shared.logout()
     }
+    
+    func refreshControlAction(_ refreshControl: UIRefreshControl) {
+        
+//        // ... Create the URLRequest `myRequest` ...
+//        
+//        // Configure session so that completion handler is executed on main UI thread
+//        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
+//        let task: URLSessionDataTask = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+//            
+//            // ... Use the new data to update the data source ...
+//            
+//            // Reload the tableView now that there is new data
+//            myTableView.reloadData()
+//            
+//            // Tell the refreshControl to stop spinning
+//            refreshControl.endRefreshing()
+//        }
+//        task.resume()
+        
+        
+        
+        
+        APIManager.shared.getHomeTimeLine { (tweets: [Tweet]?, error: Error?) in
+            if let tweets = tweets {
+                self.tweets = tweets
+                self.refreshControl.endRefreshing()
+                self.tableView.reloadData()
+            } else if let error = error {
+                print("Error getting home timeline: " + error.localizedDescription)
+            }
+        }
+    }
+    
     
     
     /*
