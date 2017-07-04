@@ -105,7 +105,14 @@ class TweetCell: UITableViewCell {
             // retweet should be DECREMENTED
             tweet.retweetCount = tweet.retweetCount - 1
             if tweet.retweetCount != 0 {
-                retweetCountLabel.text = String(tweet.retweetCount)
+                if tweet.retweetCount >= 1000000 {
+                    retweetCountLabel.text = String(tweet.retweetCount / 1000000) + "M"
+                }
+                if tweet.retweetCount >= 1000 {
+                    retweetCountLabel.text = String(tweet.retweetCount / 1000) + "K"
+                } else {
+                    retweetCountLabel.text = String(tweet.retweetCount)
+                }
             } else {
                 retweetCountLabel.text = ""
             }
@@ -122,7 +129,18 @@ class TweetCell: UITableViewCell {
             retweetButton.isSelected = true
             // retweet should be INCREMENTED
             tweet.retweetCount = tweet.retweetCount + 1
-            retweetCountLabel.text = String(tweet.retweetCount)
+            if tweet.retweetCount != 0 {
+                if tweet.retweetCount >= 1000000 {
+                    retweetCountLabel.text = String(tweet.retweetCount / 1000000) + "M"
+                }
+                if tweet.retweetCount >= 1000 {
+                    retweetCountLabel.text = String(tweet.retweetCount / 1000) + "K"
+                } else {
+                    retweetCountLabel.text = String(tweet.retweetCount)
+                }
+            } else {
+                retweetCountLabel.text = ""
+            }
             
             APIManager.shared.retweet(with: tweet, completion: { (tweet: Tweet?, error: Error?) in
                 if let error = error {
@@ -146,6 +164,17 @@ class TweetCell: UITableViewCell {
             } else {
                 favoriteCountLabel.text = ""
             }
+            if tweet.favoriteCount != 0 {
+                if tweet.favoriteCount! >= 1000000 {
+                    favoriteCountLabel.text = String(tweet.favoriteCount! / 1000000) + "M"
+                } else if tweet.favoriteCount! >= 1000 {
+                    favoriteCountLabel.text = String(tweet.favoriteCount! / 1000) + "K"
+                } else {
+                    favoriteCountLabel.text = String(tweet.favoriteCount!)
+                }
+            } else {
+                favoriteCountLabel.text = ""
+            }
             
             APIManager.shared.unFavorite(with: tweet, completion: { (tweet: Tweet?, error: Error?) in
                 if let error = error {
@@ -160,6 +189,18 @@ class TweetCell: UITableViewCell {
             // favorite should be INCREMENTED
             tweet.favoriteCount = tweet.favoriteCount! + 1
             favoriteCountLabel.text = String(tweet.favoriteCount!)
+            if tweet.favoriteCount != 0 {
+                if tweet.favoriteCount! >= 1000000 {
+                    favoriteCountLabel.text = String(tweet.favoriteCount! / 1000000) + "M"
+                } else if tweet.favoriteCount! >= 1000 {
+                    favoriteCountLabel.text = String(tweet.favoriteCount! / 1000) + "K"
+                } else {
+                    favoriteCountLabel.text = String(tweet.favoriteCount!)
+                }
+            } else {
+                favoriteCountLabel.text = ""
+            }
+            
             
             APIManager.shared.favorite(with: tweet, completion: { (tweet: Tweet?, error: Error?) in
                 if let error = error {

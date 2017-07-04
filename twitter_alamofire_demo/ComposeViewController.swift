@@ -22,10 +22,10 @@ class ComposeViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.textInput = RSKPlaceholderTextView(frame: CGRect(x: 100, y: 100, width: self.view.frame.width, height: 100))
-        //self.textInput.placeholder = "What's happening?"
-        
-        self.view.addSubview(self.textInput)
+//        self.textInput = RSKPlaceholderTextView(frame: CGRect(x: 100, y: 100, width: self.view.frame.width, height: 100))
+//        self.textInput.placeholder = "What's happening?"
+//        self.view.addSubview(self.textInput)
+
         
         profileImage.layer.cornerRadius = profileImage.frame.width * 0.1
         profileImage.layer.masksToBounds = true
@@ -49,6 +49,10 @@ class ComposeViewController: UIViewController {
         dismiss(animated: true) { 
             //
         }
+    }
+    
+    public func textViewDidChange(_ textView: UITextView) {
+        self.textInput.text = ""
     }
 
     /*
