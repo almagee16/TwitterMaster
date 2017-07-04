@@ -17,6 +17,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     let refreshControl = UIRefreshControl()
     
+    // weak var delegate: ComposeViewControllerDelegate?
+
 
     
     override func viewDidLoad() {
@@ -70,26 +72,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func refreshControlAction(_ refreshControl: UIRefreshControl) {
-        
-//        // ... Create the URLRequest `myRequest` ...
-//        
-//        // Configure session so that completion handler is executed on main UI thread
-//        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
-//        let task: URLSessionDataTask = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
-//            
-//            // ... Use the new data to update the data source ...
-//            
-//            // Reload the tableView now that there is new data
-//            myTableView.reloadData()
-//            
-//            // Tell the refreshControl to stop spinning
-//            refreshControl.endRefreshing()
-//        }
-//        task.resume()
-        
-        
-        
-        
+
         APIManager.shared.getHomeTimeLine { (tweets: [Tweet]?, error: Error?) in
             if let tweets = tweets {
                 self.tweets = tweets
@@ -101,6 +84,10 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    @IBAction func didTapPost(_ sender: Any) {
+        performSegue(withIdentifier: "composeSegue", sender: self)
+        
+    }
     
     
     /*
