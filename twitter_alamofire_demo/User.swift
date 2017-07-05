@@ -18,6 +18,7 @@ class User {
     var dictionary: [String: Any]?
     var followerCount: Int
     var followingCount: Int
+    var tagLine: String
     private static var _current: User?
     
     static var current: User? {
@@ -46,6 +47,7 @@ class User {
     
     init(dictionary: [String: Any]) {
         self.dictionary = dictionary
+        tagLine = dictionary["description"] as! String
         name = dictionary["name"] as! String
         screenname = "@" + (dictionary["screen_name"] as! String)
         profilePictureUrl = dictionary["profile_image_url_https"] as! String

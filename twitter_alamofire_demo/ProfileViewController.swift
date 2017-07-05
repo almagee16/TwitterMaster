@@ -11,6 +11,7 @@ import AlamofireImage
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
 
+    @IBOutlet weak var taglineLabel: UILabel!
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var profileImage: UIImageView!
     var user: User?
@@ -37,6 +38,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if user == nil {
             user = User.current
         }
+        taglineLabel.text = user?.tagLine
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
