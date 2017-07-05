@@ -11,11 +11,18 @@ import AlamofireImage
 import RSKPlaceholderTextView
 
 
-class ComposeViewController: UIViewController {
+class ComposeViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var profileImage: UIImageView!
 
     @IBOutlet weak var textInput: UITextView!
+    
+    @IBOutlet weak var tweetButton: UIButton!
+    
+    @IBOutlet weak var characterCountLabel: UILabel!
+    
+    var placeHolderLabel: UILabel!
+    
     
     
     override func viewDidLoad() {
@@ -25,10 +32,23 @@ class ComposeViewController: UIViewController {
 //        self.textInput = RSKPlaceholderTextView(frame: CGRect(x: 100, y: 100, width: self.view.frame.width, height: 100))
 //        self.textInput.placeholder = "What's happening?"
 //        self.view.addSubview(self.textInput)
+        textInput.delegate = self
+        placeHolderLabel = UILabel()
+        placeHolderLabel.text = "What's happening?"
+        placeHolderLabel.sizeToFit()
+        textInput.addSubview(placeHolderLabel)
+        placeHolderLabel.frame.origin = CGPoint(x: 5, y: (textInput.font?.pointSize)! / 2)
+        placeHolderLabel.textColor = UIColor.darkGray
+        placeHolderLabel.isHidden = false
 
-        
-        profileImage.layer.cornerRadius = profileImage.frame.width * 0.1
+        profileImage.layer.cornerRadius = profileImage.frame.width * 0.5
         profileImage.layer.masksToBounds = true
+        
+        tweetButton.layer.cornerRadius = tweetButton.frame.width * 0.16
+        tweetButton.layer.masksToBounds = true
+        tweetButton.backgroundColor = UIColor.lightGray
+        
+        characterCountLabel.text = "140"
         
         let user = User.current!
         let url = URL(string: user.profilePictureUrl)!
@@ -41,19 +61,59 @@ class ComposeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-//    protocol ComposeViewControllerDelegate {
-//        func did(post: Tweet)
-//    }
-    
     @IBAction func onClose(_ sender: Any) {
         dismiss(animated: true) { 
             //
         }
     }
     
-    public func textViewDidChange(_ textView: UITextView) {
-        self.textInput.text = ""
+    func textViewDidChange(_ textInput: UITextView) {
+        placeHolderLabel.isHidden = !textInput.text.isEmpty
+        let text = textInput.text as! String
+        let remainingCount = 140 - text.characters.count
+        let count = text.characters.count
+        
+        if count == 0  {
+            tweetButton.backgroundColor = UIColor.lightGray
+            
+            characterCountLabel.text = String(remainingCount)
+            characterCountLabel.textColor = UIColor.black
+        } else if count > 140 {
+            tweetButton.backgroundColor = UIColor.lightGray
+            
+            characterCountLabel.text = String(remainingCount)
+            characterCountLabel.textColor = UIColor.red
+            
+        } else {
+            tweetButton.backgroundColor = tweetButton.tintColor
+            
+            characterCountLabel.text = String(remainingCount)
+            characterCountLabel.textColor = UIColor.black
+        }
+        
     }
+    
+    @IBAction func onTweetButton(_ sender: Any) {
+        let count = textInput.text.characters.count
+        if count == 0 || count > 140 {
+            // nothing should be done
+        } else {
+            APIManager.shared.composeTweet(with: textInput.text, completion: { (tweet: Tweet?, error: Error?) in
+                if let error = error {
+                    print("Error composing Tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    self.textInput.endEditing(true)
+                    print("Compose Tweet Success!")
+                    self.dismiss(animated: true, completion: { 
+                        //
+                    })
+                }
+            })
+            
+        }
+        
+    }
+    
 
     /*
     // MARK: - Navigation

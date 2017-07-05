@@ -26,6 +26,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print (User.current?.dictionary)
         
         tableView.dataSource = self
         tableView.delegate = self

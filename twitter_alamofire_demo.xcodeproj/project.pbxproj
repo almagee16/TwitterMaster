@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4D3422871F0B321B006B8A62 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3422861F0B321B006B8A62 /* ComposeViewController.swift */; };
+		4D6F20F71F0C89EC007B93AB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6F20F61F0C89EC007B93AB /* ProfileViewController.swift */; };
+		4D6F20FB1F0CA6E4007B93AB /* UserTweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6F20FA1F0CA6E4007B93AB /* UserTweetCell.swift */; };
 		4DFBE0D11F0C43C00056A83F /* InfiniteScrollActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFBE0D01F0C43C00056A83F /* InfiniteScrollActivityView.swift */; };
 		547221C96829E6F537FCE2FE /* Pods_twitter_alamofire_demoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FCA05DC47A45B9943F23F5F /* Pods_twitter_alamofire_demoUITests.framework */; };
 		6C028F67F4B75B9CE911AB20 /* Pods_twitter_alamofire_demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 001F2EB27736B82E6AF0082B /* Pods_twitter_alamofire_demo.framework */; };
@@ -48,6 +50,8 @@
 		3FCA05DC47A45B9943F23F5F /* Pods_twitter_alamofire_demoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_twitter_alamofire_demoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		434659329CA4ED45495F750D /* Pods-twitter_alamofire_demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-twitter_alamofire_demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-twitter_alamofire_demo/Pods-twitter_alamofire_demo.debug.xcconfig"; sourceTree = "<group>"; };
 		4D3422861F0B321B006B8A62 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
+		4D6F20F61F0C89EC007B93AB /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		4D6F20FA1F0CA6E4007B93AB /* UserTweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTweetCell.swift; sourceTree = "<group>"; };
 		4DFA54CBFE40EC0C9E20906F /* Pods-twitter_alamofire_demoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-twitter_alamofire_demoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-twitter_alamofire_demoTests/Pods-twitter_alamofire_demoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4DFBE0D01F0C43C00056A83F /* InfiniteScrollActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteScrollActivityView.swift; sourceTree = "<group>"; };
 		55D629C137D93399CE6DE905 /* Pods-twitter_alamofire_demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-twitter_alamofire_demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-twitter_alamofire_demo/Pods-twitter_alamofire_demo.release.xcconfig"; sourceTree = "<group>"; };
@@ -200,6 +204,7 @@
 				ED1AFD601E94496E00FD4B90 /* LoginViewController.swift */,
 				ED1D234B1EF6E42900C51ACC /* TimelineViewController.swift */,
 				4D3422861F0B321B006B8A62 /* ComposeViewController.swift */,
+				4D6F20F61F0C89EC007B93AB /* ProfileViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -208,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				ED1D234D1EF71C4B00C51ACC /* TweetCell.swift */,
+				4D6F20FA1F0CA6E4007B93AB /* UserTweetCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -511,6 +517,8 @@
 			files = (
 				4DFBE0D11F0C43C00056A83F /* InfiniteScrollActivityView.swift in Sources */,
 				ED1D23461EF63C1D00C51ACC /* User.swift in Sources */,
+				4D6F20FB1F0CA6E4007B93AB /* UserTweetCell.swift in Sources */,
+				4D6F20F71F0C89EC007B93AB /* ProfileViewController.swift in Sources */,
 				ED1D234E1EF71C4B00C51ACC /* TweetCell.swift in Sources */,
 				ED1D23481EF6E37700C51ACC /* Tweet.swift in Sources */,
 				4D3422871F0B321B006B8A62 /* ComposeViewController.swift in Sources */,
