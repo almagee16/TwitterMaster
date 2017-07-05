@@ -277,7 +277,7 @@ class APIManager: SessionManager {
                 }
                 
                 let data = NSKeyedArchiver.archivedData(withRootObject: tweetDictionaries)
-                UserDefaults.standard.set(data, forKey: "hometimeline_tweets")
+                UserDefaults.standard.set(data, forKey: "usertimeline_tweets")
                 UserDefaults.standard.synchronize()
                 
                 let tweets = tweetDictionaries.flatMap({ (dictionary) -> Tweet in
@@ -311,6 +311,36 @@ class APIManager: SessionManager {
                 
                 let data = NSKeyedArchiver.archivedData(withRootObject: tweetDictionaries)
                 UserDefaults.standard.set(data, forKey: "usertimeline_tweets")
+                UserDefaults.standard.synchronize()
+                
+                let tweets = tweetDictionaries.flatMap({ (dictionary) -> Tweet in
+                    Tweet(dictionary: dictionary)
+                })
+                completion(tweets, nil)
+        }
+    }
+    
+    func getMentionsTimeLine(completion: @escaping ([Tweet]?, Error?) -> ()) {
+        
+        // This uses tweets from disk to avoid hitting rate limit. Comment out if you want fresh
+        // tweets,
+        
+        request(URL(string: "https://api.twitter.com/1.1/statuses/mentions_timeline.json")!, method: .get)
+            .validate()
+            .responseJSON { (response) in
+                guard response.result.isSuccess else {
+                    completion(nil, response.result.error)
+                    return
+                }
+                guard let tweetDictionaries = response.result.value as? [[String: Any]] else {
+                    print("Failed to parse tweets")
+                    let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey : "Failed to parse tweets"])
+                    completion(nil, error)
+                    return
+                }
+                
+                let data = NSKeyedArchiver.archivedData(withRootObject: tweetDictionaries)
+                UserDefaults.standard.set(data, forKey: "mentionstimeline_tweets")
                 UserDefaults.standard.synchronize()
                 
                 let tweets = tweetDictionaries.flatMap({ (dictionary) -> Tweet in

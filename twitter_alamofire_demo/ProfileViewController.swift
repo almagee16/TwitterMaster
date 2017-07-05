@@ -105,7 +105,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.refreshControl.endRefreshing()
                 self.tableView.reloadData()
             } else if let error = error {
-                print("Error getting home timeline: " + error.localizedDescription)
+                print("Error getting user timeline: " + error.localizedDescription)
             }
         }
     }
