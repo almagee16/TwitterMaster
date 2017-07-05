@@ -122,7 +122,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                 isMoreDataLoading = true
                 
                 // Code to load more results
-                APIManager.shared.getNewTweets(with: Int(tweets.last!.id), completion: { (tweets: [Tweet]?, error: Error?) in
+                APIManager.shared.getNewHomeTweets(with: Int(tweets.last!.id), completion: { (tweets: [Tweet]?, error: Error?) in
                     if let error = error {
                         print (error.localizedDescription)
                     } else if let tweets = tweets {

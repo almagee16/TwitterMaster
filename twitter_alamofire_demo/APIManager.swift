@@ -119,7 +119,7 @@ class APIManager: SessionManager {
     }
     
     // Infinite scrolling load more tweets
-    func getNewTweets(with tweetId: Int, completion: @escaping ([Tweet]?, Error?) -> ()) {
+    func getNewHomeTweets(with tweetId: Int, completion: @escaping ([Tweet]?, Error?) -> ()) {
         let parameters = ["max_id": tweetId]
         
         request(URL(string: "https://api.twitter.com/1.1/statuses/home_timeline.json")!, method: .get, parameters: parameters)
@@ -260,15 +260,6 @@ class APIManager: SessionManager {
         
         // This uses tweets from disk to avoid hitting rate limit. Comment out if you want fresh
         // tweets,
-        //        if let data = UserDefaults.standard.object(forKey: "hometimeline_tweets") as? Data {
-        //            let tweetDictionaries = NSKeyedUnarchiver.unarchiveObject(with: data) as! [[String: Any]]
-        //            let tweets = tweetDictionaries.flatMap({ (dictionary) -> Tweet in
-        //                Tweet(dictionary: dictionary)
-        //            })
-        //
-        //            completion(tweets, nil)
-        //            return
-        //        }
         
         let parameters = ["screenname": screenName]
         request(URL(string: "https://api.twitter.com/1.1/statuses/user_timeline.json")!, method: .get, parameters: parameters)
