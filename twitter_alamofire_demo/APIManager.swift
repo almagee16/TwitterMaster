@@ -150,13 +150,9 @@ class APIManager: SessionManager {
     // MARK: TODO: Favorite a Tweet
     func favorite(with tweet: Tweet, completion: @escaping (Tweet?, Error?) -> ()) {
         let parameters = ["id": tweet.id]
-        let id : Int64 = tweet.id
-        let idString = String(id)
-        let baseUrl = "https://api.twitter.com/1.1/favorites/create.json?id="
-        let urlString = baseUrl + idString
-        print (urlString)
-        
-        request(urlString, method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseJSON { (response) in
+        let urlString = "https://api.twitter.com/1.1/favorites/create.json"
+
+        request(urlString, method: .post, parameters: parameters, encoding: URLEncoding.queryString).validate().responseJSON { (response) in
             if response.result.isSuccess,
                 let tweetDictionary = response.result.value as? [String: Any] {
                 let tweet = Tweet(dictionary: tweetDictionary)
@@ -242,16 +238,27 @@ class APIManager: SessionManager {
     
     func composeTweet(with text: String, completion: @escaping (Tweet?, Error?) -> ()) {
         let urlString = "https://api.twitter.com/1.1/statuses/update.json"
+//        let encodedText = text.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics)
+//        let fullString = urlString + encodedText!
         let parameters = ["status": text]
-        request(urlString, method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseJSON { (response) in
-            if response.result.isSuccess,
-                let tweetDictionary = response.result.value as? [String: Any] {
-                let tweet = Tweet(dictionary: tweetDictionary)
-                completion(tweet, nil)
-            } else {
-                completion(nil, response.result.error)
-            }
+        
+        oauthManager.client.post(urlString, parameters: parameters, headers: nil, body: nil, success: {(response: OAuthSwiftResponse) in
+            let tweetDictionary = try! response.jsonObject() as! [String: Any]
+            let tweet = Tweet(dictionary: tweetDictionary)
+            completion(tweet, nil)
+        }) { (error: OAuthSwiftError) in
+            completion(nil, error.underlyingError)
         }
+        
+//        request(fullString, method: .post).validate().responseJSON { (response) in
+//            if response.result.isSuccess,
+//                let tweetDictionary = response.result.value as? [String: Any] {
+//                let tweet = Tweet(dictionary: tweetDictionary)
+//                completion(tweet, nil)
+//            } else {
+//                completion(nil, response.result.error)
+//            }
+//        }
     }
     
     

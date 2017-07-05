@@ -8,6 +8,8 @@
 
 import UIKit
 import AlamofireImage
+import TTTAttributedLabel
+
 
 class MentionsTweetCell: UITableViewCell {
 
@@ -215,5 +217,6 @@ class MentionsTweetCell: UITableViewCell {
 
     }
     
+
 
 }

@@ -8,6 +8,11 @@
 
 import UIKit
 import AlamofireImage
+import TTTAttributedLabel
+
+protocol TweetCellDelegate {
+    func didTapReply()
+}
 
 class TweetCell: UITableViewCell {
     
@@ -28,6 +33,8 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var favoriteCountLabel: UILabel!
     
     @IBOutlet weak var profileImage: UIImageView!
+    
+    // weak var delegate: TweetCellDelegate!
     
     
     

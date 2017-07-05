@@ -10,6 +10,10 @@ import UIKit
 import AlamofireImage
 import RSKPlaceholderTextView
 
+protocol ComposeViewControllerDelegate {
+    func insertIntoTimeline(tweet: Tweet)
+}
+
 
 class ComposeViewController: UIViewController, UITextViewDelegate {
     
@@ -23,15 +27,14 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     
     var placeHolderLabel: UILabel!
     
+    // weak var delegate: ComposeViewControllerDelegate!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-//        self.textInput = RSKPlaceholderTextView(frame: CGRect(x: 100, y: 100, width: self.view.frame.width, height: 100))
-//        self.textInput.placeholder = "What's happening?"
-//        self.view.addSubview(self.textInput)
+
         textInput.delegate = self
         placeHolderLabel = UILabel()
         placeHolderLabel.text = "What's happening?"
@@ -109,9 +112,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
                     })
                 }
             })
-            
         }
-        
     }
     
 

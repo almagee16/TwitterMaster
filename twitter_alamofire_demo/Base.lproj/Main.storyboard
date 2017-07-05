@@ -679,10 +679,15 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yte-Mp-qc4">
+                                                    <rect key="frame" x="8" y="8" width="50" height="50"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="4c0-VS-wZx" secondAttribute="bottom" constant="8" id="1bW-6V-RMJ"/>
                                                 <constraint firstItem="CV5-rE-f6a" firstAttribute="leading" secondItem="J79-Pu-cln" secondAttribute="trailing" constant="4" id="1cI-IT-7ug"/>
+                                                <constraint firstItem="Yte-Mp-qc4" firstAttribute="leading" secondItem="rU3-IJ-Kc5" secondAttribute="leading" id="2ga-2t-myf"/>
                                                 <constraint firstItem="J79-Pu-cln" firstAttribute="centerY" secondItem="4c0-VS-wZx" secondAttribute="centerY" id="5sT-Ly-qU0"/>
                                                 <constraint firstItem="CV5-rE-f6a" firstAttribute="centerY" secondItem="4c0-VS-wZx" secondAttribute="centerY" id="9Re-k3-cpL"/>
                                                 <constraint firstItem="IoB-0E-t2a" firstAttribute="leading" secondItem="i8g-g8-ro1" secondAttribute="trailing" constant="8" id="Bpc-nr-XHJ"/>
@@ -691,9 +696,11 @@
                                                 <constraint firstItem="J79-Pu-cln" firstAttribute="leading" secondItem="FZx-B7-j0y" secondAttribute="trailing" constant="53" id="RDp-fX-2LO"/>
                                                 <constraint firstItem="KsF-0z-747" firstAttribute="leading" secondItem="4c0-VS-wZx" secondAttribute="trailing" constant="53" id="SXn-1Q-oRR"/>
                                                 <constraint firstItem="yNC-7p-6kg" firstAttribute="leading" secondItem="rU3-IJ-Kc5" secondAttribute="trailing" constant="8" id="Sag-eK-f9a"/>
+                                                <constraint firstItem="Yte-Mp-qc4" firstAttribute="trailing" secondItem="rU3-IJ-Kc5" secondAttribute="trailing" id="Vfs-Fl-XK2"/>
                                                 <constraint firstItem="r6d-Uc-oiR" firstAttribute="top" secondItem="yNC-7p-6kg" secondAttribute="bottom" constant="8" id="Wbr-5m-swb"/>
                                                 <constraint firstItem="r6d-Uc-oiR" firstAttribute="leading" secondItem="yNC-7p-6kg" secondAttribute="leading" id="ap8-mx-QPv"/>
                                                 <constraint firstItem="KsF-0z-747" firstAttribute="centerY" secondItem="4c0-VS-wZx" secondAttribute="centerY" id="atA-ar-2vH"/>
+                                                <constraint firstItem="Yte-Mp-qc4" firstAttribute="bottom" secondItem="rU3-IJ-Kc5" secondAttribute="bottom" id="dss-dO-Pa9"/>
                                                 <constraint firstItem="rU3-IJ-Kc5" firstAttribute="top" secondItem="dJa-YH-NZa" secondAttribute="top" constant="8" id="gMn-8T-9eg"/>
                                                 <constraint firstItem="rU3-IJ-Kc5" firstAttribute="leading" secondItem="dJa-YH-NZa" secondAttribute="leading" constant="8" id="h7E-Ry-NfI"/>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="IoB-0E-t2a" secondAttribute="trailing" constant="8" id="hXL-wd-RYZ"/>
@@ -704,6 +711,7 @@
                                                 <constraint firstItem="4c0-VS-wZx" firstAttribute="top" secondItem="r6d-Uc-oiR" secondAttribute="bottom" constant="8" id="rer-ps-d6i"/>
                                                 <constraint firstItem="FZx-B7-j0y" firstAttribute="leading" secondItem="KsF-0z-747" secondAttribute="trailing" constant="4" id="tJJ-Am-QjS"/>
                                                 <constraint firstItem="FZx-B7-j0y" firstAttribute="centerY" secondItem="4c0-VS-wZx" secondAttribute="centerY" id="uM3-jp-b5Z"/>
+                                                <constraint firstItem="Yte-Mp-qc4" firstAttribute="top" secondItem="rU3-IJ-Kc5" secondAttribute="top" id="xWU-rH-iMU"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
