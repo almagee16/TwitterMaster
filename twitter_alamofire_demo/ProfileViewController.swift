@@ -129,9 +129,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                         print ("success")
                         self.isMoreDataLoading = false
                         self.loadingMoreView!.stopAnimating()
-                        for tweet in tweets {
-                            self.tweets.append(tweet)
+                        if tweets.count == 1 {
+                            
+                        } else {
+                            for tweet in tweets {
+                                self.tweets.append(tweet)
+                            }
+                            self.tableView.reloadData()
                         }
+                        
                         self.tableView.reloadData()
                     } else {
                         print ("there was no error, but there are no new tweets")
