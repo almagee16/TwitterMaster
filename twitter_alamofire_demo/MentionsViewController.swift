@@ -28,6 +28,8 @@ class MentionsViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.estimatedRowHeight = 100
         tableView.delegate = self
         tableView.dataSource = self
+        self.automaticallyAdjustsScrollViewInsets = false
+
         
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
         // add refresh control to table view
@@ -86,38 +88,38 @@ class MentionsViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        if (!isMoreDataLoading) {
-//            // Calculate the position of one screen length before the bottom of the results
-//            let scrollViewContentHeight = tableView.contentSize.height
-//            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
-//            
-//            // When the user has scrolled past the threshold, start requesting
-//            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging) {
-//                
-//                isMoreDataLoading = true
-//                
-//                // Code to load more results
-//                APIManager.shared.getNewUserTweets(with: (user!.screenname), id: Int(tweets.last!.id), completion: { (tweets: [Tweet]?, error: Error?) in
-//                    if let error = error {
-//                        print (error.localizedDescription)
-//                    } else if let tweets = tweets {
-//                        print ("success")
-//                        self.isMoreDataLoading = false
-//                        self.loadingMoreView!.stopAnimating()
-//                        for tweet in tweets {
-//                            self.tweets.append(tweet)
-//                        }
-//                        self.tableView.reloadData()
-//                    } else {
-//                        print ("there was no error, but there are no new tweets")
-//                    }
-//                })
-//                
-//                
-//            }
-//        }
-//    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (!isMoreDataLoading) {
+            // Calculate the position of one screen length before the bottom of the results
+            let scrollViewContentHeight = tableView.contentSize.height
+            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+            
+            // When the user has scrolled past the threshold, start requesting
+            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging) {
+                
+                isMoreDataLoading = true
+                
+                // Code to load more results
+                APIManager.shared.getNewMentionsTweets(with: Int(tweets.last!.id), completion: { (tweets: [Tweet]?, error: Error?) in
+                    if let error = error {
+                        print (error.localizedDescription)
+                    } else if let tweets = tweets {
+                        print ("success")
+                        self.isMoreDataLoading = false
+                        self.loadingMoreView!.stopAnimating()
+                        for tweet in tweets {
+                            self.tweets.append(tweet)
+                        }
+                        self.tableView.reloadData()
+                    } else {
+                        print ("there was no error, but there are no new tweets")
+                    }
+                })
+                
+                
+            }
+        }
+    }
     
 
     /*
