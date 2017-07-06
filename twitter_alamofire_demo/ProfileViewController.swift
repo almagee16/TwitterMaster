@@ -191,7 +191,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        
+        if segue.identifier == "userToDetail" {
+            let cell = sender as! UserTweetCell
+            let indexPath = tableView.indexPath(for: cell)!
+            let tweet = tweets[indexPath.row]
+            let view = segue.destination as! TweetDetailViewController
+            view.tweet = tweet
+        }
     }
     
 

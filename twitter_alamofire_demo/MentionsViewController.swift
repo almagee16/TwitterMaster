@@ -153,6 +153,12 @@ class MentionsViewController: UIViewController, UITableViewDelegate, UITableView
             let profileView = segue.destination as! ProfileViewController
             profileView.user = sender as! User
             print ("tester after this")
+        } else if segue.identifier == "mentionsToDetail" {
+            let cell = sender as! MentionsTweetCell
+            let indexPath = tableView.indexPath(for: cell)!
+            let tweet = tweets[indexPath.row]
+            let view = segue.destination as! TweetDetailViewController
+            view.tweet = tweet
         }
     }
  

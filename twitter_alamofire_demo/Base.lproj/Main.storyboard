@@ -666,6 +666,7 @@
                                             <outlet property="retweetCountLabel" destination="VXg-NQ-NF0" id="beY-7B-2oS"/>
                                             <outlet property="tweetTextLabel" destination="sp7-dz-rxm" id="9yU-p5-To8"/>
                                             <outlet property="usernameLabel" destination="FzE-CV-57f" id="Xik-oo-qYg"/>
+                                            <segue destination="xhG-3e-iWI" kind="show" identifier="userToDetail" id="gjV-cH-yJ7"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -905,6 +906,7 @@
                                             <outlet property="retweetCountLabel" destination="FZx-B7-j0y" id="RKo-ki-fX6"/>
                                             <outlet property="tweetTextLabel" destination="r6d-Uc-oiR" id="pRP-i5-U62"/>
                                             <outlet property="usernameLabel" destination="i8g-g8-ro1" id="x5i-53-47d"/>
+                                            <segue destination="xhG-3e-iWI" kind="show" identifier="mentionsToDetail" id="tIg-bA-VxZ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1013,7 +1015,7 @@
         <image name="retweet-icon-green" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UtR-Jk-JIi"/>
-        <segue reference="Mct-DP-AeE"/>
+        <segue reference="Od1-4d-5Mw"/>
+        <segue reference="gjV-cH-yJ7"/>
     </inferredMetricsTieBreakers>
 </document>
