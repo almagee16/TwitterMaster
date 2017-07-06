@@ -433,6 +433,9 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rkj-LI-UkQ">
                                         <rect key="frame" x="8" y="8" width="75" height="75"/>
+                                        <connections>
+                                            <action selector="didTapProfile:" destination="xhG-3e-iWI" eventType="touchUpInside" id="a8q-KH-EWs"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -473,7 +476,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.8316745431450483" green="0.90745093885577233" blue="0.95368020304568524" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="WrO-Ih-iii" firstAttribute="top" secondItem="3ZH-BI-eCA" secondAttribute="bottom" id="Dug-0X-DQf"/>
                             <constraint firstItem="WrO-Ih-iii" firstAttribute="leading" secondItem="Pf5-uo-XUc" secondAttribute="leading" id="TGh-FF-mfI"/>
@@ -491,6 +494,7 @@
                         <outlet property="retweetCountLabel" destination="rSl-Td-u0T" id="RTJ-LP-o2v"/>
                         <outlet property="tweetTextLabel" destination="ckC-39-o4N" id="uYw-qw-hee"/>
                         <outlet property="usernameLabel" destination="aYy-iN-sR9" id="MWc-mv-peG"/>
+                        <segue destination="2c7-1R-SDf" kind="show" identifier="detailToProfile" id="LVE-Vq-6mI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mvj-x1-Y41" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1015,7 +1019,7 @@
         <image name="retweet-icon-green" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Od1-4d-5Mw"/>
-        <segue reference="gjV-cH-yJ7"/>
+        <segue reference="tIg-bA-VxZ"/>
+        <segue reference="LVE-Vq-6mI"/>
     </inferredMetricsTieBreakers>
 </document>

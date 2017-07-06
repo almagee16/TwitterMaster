@@ -40,6 +40,11 @@ class Tweet {
         // Convert String to Date
         let date = formatter.date(from: createdAtOriginalString)!
         // Configure output format
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
+        detailDateString = dateFormatter.string(from: date)
+        
         let interval = -1 * Int(date.timeIntervalSinceNow)
         if interval < 60 {
             let intervalString = String(interval)
@@ -60,7 +65,6 @@ class Tweet {
             // Convert Date to String
             createdAtString = formatter.string(from: date)
         }
-        detailDateString = "I'll fix this later."
 
         
         

@@ -84,8 +84,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let url = URL(string: user!.profilePictureUrl)!
         profileImage.af_setImage(withURL: url)
         
-        let backgroundURL = URL(string: user!.backgroundUrl)!
-        backgroundImage.af_setImage(withURL: backgroundURL)
+        if let backgroundURL = user!.backgroundUrl {
+            let url = URL(string:backgroundURL)
+            backgroundImage.af_setImage(withURL: url!)
+        }
         
         nameLabel.text = user?.name
         screenNameLabel.text = user?.screenname
