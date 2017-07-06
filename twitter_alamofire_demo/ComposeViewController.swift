@@ -67,6 +67,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func onClose(_ sender: Any) {
+        view.endEditing(true)
         dismiss(animated: true) { 
             //
         }
@@ -107,7 +108,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
                 if let error = error {
                     print("Error composing Tweet: \(error.localizedDescription)")
                 } else if let tweet = tweet {
-                    self.textInput.endEditing(true)
+                    self.view.endEditing(true)
                     print("Compose Tweet Success!")
                     self.delegate?.did(post: tweet)
                     self.dismiss(animated: true, completion: {

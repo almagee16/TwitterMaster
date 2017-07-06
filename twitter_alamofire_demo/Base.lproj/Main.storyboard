@@ -80,8 +80,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="142.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I love tweeting!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epC-Fs-Q5Z">
-                                                    <rect key="frame" x="66" y="36.5" width="301" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I love tweeting!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epC-Fs-Q5Z" customClass="ActiveLabel" customModule="ActiveLabel">
+                                                    <rect key="frame" x="66" y="36.5" width="301" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -93,7 +93,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWS-Jp-F6d">
-                                                    <rect key="frame" x="66" y="65" width="45" height="45"/>
+                                                    <rect key="frame" x="66" y="65.5" width="45" height="45"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="45" id="WOG-E1-iky"/>
                                                         <constraint firstAttribute="width" constant="45" id="yjB-no-fg1"/>
@@ -126,7 +126,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hle-mH-GSq">
-                                                    <rect key="frame" x="164" y="65" width="45" height="45"/>
+                                                    <rect key="frame" x="164" y="65.5" width="45" height="45"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="45" id="2g8-1M-7a3"/>
                                                         <constraint firstAttribute="width" constant="45" id="KaU-Zr-kFu"/>
@@ -381,7 +381,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Actual tweet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ckC-39-o4N">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Actual tweet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ckC-39-o4N" customClass="ActiveLabel" customModule="ActiveLabel">
                                         <rect key="frame" x="8" y="91" width="359" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -425,11 +425,17 @@
                                         <rect key="frame" x="58" y="173" width="30" height="30"/>
                                         <state key="normal" image="retweet-icon"/>
                                         <state key="selected" image="retweet-icon-green"/>
+                                        <connections>
+                                            <action selector="onRetweet:" destination="xhG-3e-iWI" eventType="touchUpInside" id="dN9-af-mUp"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NY6-2P-Vky">
                                         <rect key="frame" x="108" y="173" width="30" height="30"/>
                                         <state key="normal" image="favor-icon"/>
                                         <state key="selected" image="favor-icon-red"/>
+                                        <connections>
+                                            <action selector="onFavorite:" destination="xhG-3e-iWI" eventType="touchUpInside" id="oT4-6S-E7N"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rkj-LI-UkQ">
                                         <rect key="frame" x="8" y="8" width="75" height="75"/>
@@ -591,7 +597,7 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I love tweeting!!!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sp7-dz-rxm">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I love tweeting!!!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sp7-dz-rxm" customClass="ActiveLabel" customModule="ActiveLabel">
                                                     <rect key="frame" x="74" y="45" width="285" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -824,7 +830,7 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r6d-Uc-oiR">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r6d-Uc-oiR" customClass="ActiveLabel" customModule="ActiveLabel">
                                                     <rect key="frame" x="66" y="37" width="301" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -1019,7 +1025,7 @@
         <image name="retweet-icon-green" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tIg-bA-VxZ"/>
-        <segue reference="LVE-Vq-6mI"/>
+        <segue reference="UtR-Jk-JIi"/>
+        <segue reference="gjV-cH-yJ7"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -27,6 +27,8 @@ class MentionsViewController: UIViewController, UITableViewDelegate, UITableView
             self.navigationController?.view.backgroundColor = .clear
             self.navigationController!.navigationBar.backgroundColor = UIColor(red: (247.0 / 255.0), green: (247.0 / 255.0), blue: (247.0 / 255.0), alpha: 1)
         
+        tableView.reloadData()
+        
     }
     
     override func viewDidLoad() {

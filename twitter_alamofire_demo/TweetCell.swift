@@ -8,7 +8,7 @@
 
 import UIKit
 import AlamofireImage
-import TTTAttributedLabel
+import ActiveLabel
 
 protocol TweetCellDelegate: class {
     func didTapProfile(of user: User)
@@ -16,7 +16,7 @@ protocol TweetCellDelegate: class {
 
 class TweetCell: UITableViewCell {
     
-    @IBOutlet weak var tweetTextLabel: UILabel!
+    @IBOutlet weak var tweetTextLabel: ActiveLabel!
     
     @IBOutlet weak var nameLabel: UILabel!
 
@@ -53,8 +53,11 @@ class TweetCell: UITableViewCell {
 
             }
             
-            
+            tweetTextLabel.enabledTypes = [.mention, .hashtag, .url]
             tweetTextLabel.text = tweet.text
+            tweetTextLabel.handleURLTap { (url) in
+                UIApplication.shared.openURL(url)
+            }
             usernameLabel.text = tweet.user.screenname
             nameLabel.text = tweet.user.name
             dateLabel.text = tweet.createdAtString
@@ -85,7 +88,7 @@ class TweetCell: UITableViewCell {
                 favoriteCountLabel.text = ""
             }
             
-            profileImage.layer.cornerRadius = profileImage.frame.width * 0.1
+            profileImage.layer.cornerRadius = profileImage.frame.width * 0.5
             profileImage.layer.masksToBounds = true
             
             let url = URL(string: tweet.user.profilePictureUrl)!
@@ -112,6 +115,7 @@ class TweetCell: UITableViewCell {
         if retweetButton.isSelected {
             retweetButton.isSelected = false
             // retweet should be DECREMENTED
+            tweet.retweeted = false
             tweet.retweetCount = tweet.retweetCount - 1
             if tweet.retweetCount != 0 {
                 if tweet.retweetCount >= 1000000 {
@@ -137,6 +141,7 @@ class TweetCell: UITableViewCell {
         } else {
             retweetButton.isSelected = true
             // retweet should be INCREMENTED
+            tweet.retweeted = true
             tweet.retweetCount = tweet.retweetCount + 1
             if tweet.retweetCount != 0 {
                 if tweet.retweetCount >= 1000000 {
@@ -166,6 +171,7 @@ class TweetCell: UITableViewCell {
     @IBAction func onFavorite(_ sender: Any) {
         if favoriteButton.isSelected {
             favoriteButton.isSelected = false
+            tweet.favorited = false
             // favorite should be DECREMENTED
             tweet.favoriteCount = tweet.favoriteCount! - 1
             if tweet.favoriteCount != 0 {
@@ -195,6 +201,7 @@ class TweetCell: UITableViewCell {
             
         } else {
             favoriteButton.isSelected = true
+            tweet.favorited = true
             // favorite should be INCREMENTED
             tweet.favoriteCount = tweet.favoriteCount! + 1
             favoriteCountLabel.text = String(tweet.favoriteCount!)

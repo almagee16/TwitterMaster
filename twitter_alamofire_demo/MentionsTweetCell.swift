@@ -8,14 +8,15 @@
 
 import UIKit
 import AlamofireImage
-import TTTAttributedLabel
+import ActiveLabel
+
 
 
 class MentionsTweetCell: UITableViewCell {
 
     @IBOutlet weak var profileImage: UIImageView!
     
-    @IBOutlet weak var tweetTextLabel: UILabel!
+    @IBOutlet weak var tweetTextLabel: ActiveLabel!
     
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -48,6 +49,11 @@ class MentionsTweetCell: UITableViewCell {
                 
             }
             
+            tweetTextLabel.enabledTypes = [.mention, .hashtag, .url]
+            tweetTextLabel.text = tweet.text
+            tweetTextLabel.handleURLTap { (url) in
+                UIApplication.shared.openURL(url)
+            }
             tweetTextLabel.text = tweet.text
             usernameLabel.text = tweet.user.screenname
             nameLabel.text = tweet.user.name
@@ -78,7 +84,7 @@ class MentionsTweetCell: UITableViewCell {
                 favoriteCountLabel.text = ""
             }
             
-            profileImage.layer.cornerRadius = profileImage.frame.width * 0.1
+            profileImage.layer.cornerRadius = profileImage.frame.width * 0.5
             profileImage.layer.masksToBounds = true
             
             let url = URL(string: tweet.user.profilePictureUrl)!
@@ -105,6 +111,7 @@ class MentionsTweetCell: UITableViewCell {
     @IBAction func onRetweet(_ sender: Any) {
         if retweetButton.isSelected {
             retweetButton.isSelected = false
+            tweet.retweeted = false
             // retweet should be DECREMENTED
             tweet.retweetCount = tweet.retweetCount - 1
             if tweet.retweetCount != 0 {
@@ -130,6 +137,7 @@ class MentionsTweetCell: UITableViewCell {
             
         } else {
             retweetButton.isSelected = true
+            tweet.retweeted = true
             // retweet should be INCREMENTED
             tweet.retweetCount = tweet.retweetCount + 1
             if tweet.retweetCount != 0 {
@@ -161,6 +169,7 @@ class MentionsTweetCell: UITableViewCell {
     @IBAction func onFavorite(_ sender: Any) {
         if favoriteButton.isSelected {
             favoriteButton.isSelected = false
+            tweet.favorited = false
             // favorite should be DECREMENTED
             tweet.favoriteCount = tweet.favoriteCount! - 1
             if tweet.favoriteCount != 0 {
@@ -190,6 +199,7 @@ class MentionsTweetCell: UITableViewCell {
             
         } else {
             favoriteButton.isSelected = true
+            tweet.favorited = true
             // favorite should be INCREMENTED
             tweet.favoriteCount = tweet.favoriteCount! + 1
             favoriteCountLabel.text = String(tweet.favoriteCount!)

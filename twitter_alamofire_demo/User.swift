@@ -47,7 +47,6 @@ class User {
     
     init(dictionary: [String: Any]) {
         self.dictionary = dictionary
-        print (dictionary)
         tagLine = dictionary["description"] as! String
         name = dictionary["name"] as! String
         screenname = "@" + (dictionary["screen_name"] as! String)
@@ -55,7 +54,6 @@ class User {
         
         if dictionary["profile_banner_url"] != nil {
             backgroundUrl = dictionary["profile_banner_url"] as! String
-            print ("This is the profile banner url \(backgroundUrl)")
         }
         
         followerCount = dictionary["followers_count"] as! Int

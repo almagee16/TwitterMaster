@@ -13,7 +13,7 @@ target 'twitter_alamofire_demo' do
   pod 'Prephirences'
   pod 'KeychainAccess'
   pod 'RSKPlaceholderTextView'
-  pod 'TTTAttributedLabel'
+  pod 'ActiveLabel'
 
 
   target 'twitter_alamofire_demoTests' do

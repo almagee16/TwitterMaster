@@ -30,14 +30,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     
     override func viewWillAppear(_ animated: Bool) {
-        if self.navigationController?.restorationIdentifier == "TweetsNavigationController" || self.navigationController?.restorationIdentifier == "MentionsNavigationController"{
             print ("it gets to view will appear")
             self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
             self.navigationController?.navigationBar.shadowImage = UIImage()
             self.navigationController?.navigationBar.isTranslucent = true
             self.navigationController?.view.backgroundColor = .clear
+        
+        tableView.reloadData()
+        
+        
             //self.navigationController!.navigationBar.backgroundColor = UIColor.clear
-        }
 
     }
     
