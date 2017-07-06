@@ -270,7 +270,7 @@ class APIManager: SessionManager {
         // This uses tweets from disk to avoid hitting rate limit. Comment out if you want fresh
         // tweets,
         
-        let parameters = ["screenname": screenName]
+        let parameters = ["screenname": screenName, "include_rts": true] as! [String: Any]
         request(URL(string: "https://api.twitter.com/1.1/statuses/user_timeline.json")!, method: .get, parameters: parameters)
             .validate()
             .responseJSON { (response) in
@@ -303,7 +303,7 @@ class APIManager: SessionManager {
         // This uses tweets from disk to avoid hitting rate limit. Comment out if you want fresh
         // tweets,
         
-        let parameters = ["screenname": screenName, "max_id": tweetId] as [String : Any]
+        let parameters = ["screenname": screenName, "max_id": tweetId, "include_rts": true] as [String : Any]
         request(URL(string: "https://api.twitter.com/1.1/statuses/user_timeline.json")!, method: .get, parameters: parameters)
             .validate()
             .responseJSON { (response) in

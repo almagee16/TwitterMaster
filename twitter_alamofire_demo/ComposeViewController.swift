@@ -10,8 +10,8 @@ import UIKit
 import AlamofireImage
 import RSKPlaceholderTextView
 
-protocol ComposeViewControllerDelegate {
-    func insertIntoTimeline(tweet: Tweet)
+protocol ComposeViewControllerDelegate: class {
+    func did(post: Tweet)
 }
 
 
@@ -26,8 +26,9 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var characterCountLabel: UILabel!
     
     var placeHolderLabel: UILabel!
-    
-    // weak var delegate: ComposeViewControllerDelegate!
+        
+    weak var delegate: ComposeViewControllerDelegate!
+        
     
     
     override func viewDidLoad() {
@@ -43,6 +44,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         placeHolderLabel.frame.origin = CGPoint(x: 5, y: (textInput.font?.pointSize)! / 2)
         placeHolderLabel.textColor = UIColor.darkGray
         placeHolderLabel.isHidden = false
+
 
         profileImage.layer.cornerRadius = profileImage.frame.width * 0.5
         profileImage.layer.masksToBounds = true
@@ -107,8 +109,9 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
                 } else if let tweet = tweet {
                     self.textInput.endEditing(true)
                     print("Compose Tweet Success!")
-                    self.dismiss(animated: true, completion: { 
-                        //
+                    self.delegate?.did(post: tweet)
+                    self.dismiss(animated: true, completion: {
+                        
                     })
                 }
             })

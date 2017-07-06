@@ -9,7 +9,7 @@
 import UIKit
 import AlamofireImage
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, ComposeViewControllerDelegate {
 
     @IBOutlet weak var taglineLabel: UILabel!
     @IBOutlet weak var backgroundImage: UIImageView!
@@ -29,20 +29,37 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     let refreshControl = UIRefreshControl()
 
     
+    override func viewWillAppear(_ animated: Bool) {
+        if self.navigationController?.restorationIdentifier == "TweetsNavigationController" || self.navigationController?.restorationIdentifier == "MentionsNavigationController"{
+            print ("it gets to view will appear")
+            self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+            self.navigationController?.navigationBar.isTranslucent = true
+            self.navigationController?.view.backgroundColor = .clear
+            //self.navigationController!.navigationBar.backgroundColor = UIColor.clear
+        }
+
+    }
+    
+    
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.backgroundColor = .clear
+        
 
         // Do any additional setup after loading the view.
         if user == nil {
             user = User.current
         }
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+        
         taglineLabel.text = user?.tagLine
         
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -156,18 +173,26 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    func did(post: Tweet) {
+        tweets.insert(post, at: 0)
+        tableView.reloadData()
+    }
+    
+    
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
     }
-    */
+    
 
 }

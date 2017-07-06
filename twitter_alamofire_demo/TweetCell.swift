@@ -53,6 +53,7 @@ class TweetCell: UITableViewCell {
 
             }
             
+            
             tweetTextLabel.text = tweet.text
             usernameLabel.text = tweet.user.screenname
             nameLabel.text = tweet.user.name
@@ -226,6 +227,8 @@ class TweetCell: UITableViewCell {
     @IBAction func didTapProfile(_ sender: Any) {
         delegate?.didTapProfile(of: tweet.user)
     }
+    
+    
     
     
     

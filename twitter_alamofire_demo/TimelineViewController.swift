@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, TweetCellDelegate {
+class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, TweetCellDelegate, ComposeViewControllerDelegate {
     
     var tweets: [Tweet] = []
     
@@ -21,8 +21,17 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     var isMoreDataLoading = false
     var loadingMoreView:InfiniteScrollActivityView?
+    
 
-
+    override func viewWillAppear(_ animated: Bool) {
+            print ("it gets to view will disappear")
+            self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.view.backgroundColor = .clear
+            self.navigationController!.navigationBar.backgroundColor = UIColor(red: (247.0 / 255.0), green: (247.0 / 255.0), blue: (247.0 / 255.0), alpha: 1)
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,6 +116,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     @IBAction func didTapPost(_ sender: Any) {
         performSegue(withIdentifier: "composeSegue", sender: self)
         
+        
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -150,6 +160,11 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
+    func did(post: Tweet) {
+        tweets.insert(post, at: 0)
+        tableView.reloadData()
+    }
+    
     
     
      // MARK: - Navigation
@@ -161,6 +176,15 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         if segue.identifier == "timelineToProfile" {
             let profileView = segue.destination as! ProfileViewController
             profileView.user = sender as! User
+        } else if segue.identifier == "homeToDetail"{
+            let cell = sender as! TweetCell
+            let indexPath = tableView.indexPath(for: cell)!
+            let tweet = tweets[indexPath.row]
+            let view = segue.destination as! TweetDetailViewController
+            view.tweet = tweet
+        } else {
+            let destination = segue.destination as! ComposeViewController
+            destination.delegate = self
         }
      }
  
