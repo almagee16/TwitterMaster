@@ -31,6 +31,8 @@ class MentionsTweetCell: UITableViewCell {
     
     @IBOutlet weak var favoriteCountLabel: UILabel!
     
+    weak var delegate: TweetCellDelegate?
+    
     var tweet: Tweet! {
         didSet {
             if tweet.favorited! {
@@ -217,6 +219,9 @@ class MentionsTweetCell: UITableViewCell {
 
     }
     
+    @IBAction func didTapProfile(_ sender: Any) {
+        delegate?.didTapProfile(of: tweet.user)
+    }
 
 
 }

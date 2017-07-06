@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MentionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
+class MentionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, TweetCellDelegate {
 
     
     @IBOutlet weak var tableView: UITableView!
@@ -70,6 +70,7 @@ class MentionsViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "MentionsTweetCell", for: indexPath) as! MentionsTweetCell
         
         cell.tweet = tweets[indexPath.row]
+        cell.delegate = self
         
         return cell
     }
@@ -126,15 +127,25 @@ class MentionsViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    func didTapProfile(of user: User) {
+        performSegue(withIdentifier: "mentionsToProfile", sender: user)
+        
+    }
+    
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "mentionsToProfile" {
+            let profileView = segue.destination as! ProfileViewController
+            profileView.user = sender as! User
+            print ("tester after this")
+        }
     }
-    */
+ 
 
 }

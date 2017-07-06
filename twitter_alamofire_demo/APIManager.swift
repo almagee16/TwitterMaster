@@ -27,6 +27,8 @@ class APIManager: SessionManager {
     // MARK: Twitter API methods
     func login(success: @escaping () -> (), failure: @escaping (Error?) -> ()) {
         
+        clearCredentials()
+        
         // Add callback url to open app when returning from Twitter login on web
         let callbackURL = URL(string: APIManager.callbackURLString)!
         oauthManager.authorize(withCallbackURL: callbackURL, success: { (credential, _response, parameters) in

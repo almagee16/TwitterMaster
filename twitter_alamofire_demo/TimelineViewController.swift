@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
+class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, TweetCellDelegate {
     
     var tweets: [Tweet] = []
     
@@ -26,7 +26,6 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print (User.current?.dictionary)
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -73,6 +72,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
         
         cell.tweet = tweets[indexPath.row]
+        cell.delegate = self
         
         return cell
     }
@@ -145,15 +145,24 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    func didTapProfile(of user: User) {
+        performSegue(withIdentifier: "timelineToProfile", sender: user)
+        
+    }
     
-    /*
+    
+    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
+        if segue.identifier == "timelineToProfile" {
+            let profileView = segue.destination as! ProfileViewController
+            profileView.user = sender as! User
+        }
      }
-     */
+ 
     
 }

@@ -155,10 +155,18 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gox-jX-cyA">
+                                                    <rect key="frame" x="8" y="8" width="50" height="50"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <connections>
+                                                        <action selector="didTapProfile:" destination="U1g-kw-izy" eventType="touchUpInside" id="yl3-bM-YD1"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="ooO-mE-Dg8" firstAttribute="top" secondItem="zd2-Er-659" secondAttribute="top" constant="8" id="1aT-eg-RJ9"/>
                                                 <constraint firstItem="5Lu-ig-FB9" firstAttribute="leading" secondItem="aF2-oW-ozd" secondAttribute="trailing" constant="3" id="2CT-7f-3Y8"/>
+                                                <constraint firstItem="gox-jX-cyA" firstAttribute="bottom" secondItem="ooO-mE-Dg8" secondAttribute="bottom" id="2bT-eJ-KSx"/>
                                                 <constraint firstItem="RWS-Jp-F6d" firstAttribute="top" secondItem="epC-Fs-Q5Z" secondAttribute="bottom" constant="8" id="40Q-Rv-BP1"/>
                                                 <constraint firstItem="aF2-oW-ozd" firstAttribute="centerY" secondItem="RWS-Jp-F6d" secondAttribute="centerY" id="4fr-ff-tcJ"/>
                                                 <constraint firstItem="70k-Vu-PJ9" firstAttribute="bottom" secondItem="vzK-lW-HIw" secondAttribute="bottom" id="8Dm-LJ-aC0"/>
@@ -173,12 +181,15 @@
                                                 <constraint firstItem="v1P-Cw-fG5" firstAttribute="leading" secondItem="Hle-mH-GSq" secondAttribute="trailing" id="VLL-iA-fOi"/>
                                                 <constraint firstItem="Hle-mH-GSq" firstAttribute="leading" secondItem="RWS-Jp-F6d" secondAttribute="trailing" constant="53" id="VWK-Ap-xXv"/>
                                                 <constraint firstItem="epC-Fs-Q5Z" firstAttribute="top" secondItem="vzK-lW-HIw" secondAttribute="bottom" constant="8" id="Wre-O7-eeo"/>
+                                                <constraint firstItem="gox-jX-cyA" firstAttribute="trailing" secondItem="ooO-mE-Dg8" secondAttribute="trailing" id="XO2-wF-VUI"/>
                                                 <constraint firstItem="5Lu-ig-FB9" firstAttribute="centerY" secondItem="RWS-Jp-F6d" secondAttribute="centerY" id="cJ9-kU-3tT"/>
                                                 <constraint firstItem="vzK-lW-HIw" firstAttribute="leading" secondItem="ooO-mE-Dg8" secondAttribute="trailing" constant="8" id="inc-XP-P5z"/>
                                                 <constraint firstItem="70k-Vu-PJ9" firstAttribute="leading" secondItem="vzK-lW-HIw" secondAttribute="trailing" constant="8" id="j0a-lE-v5n"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0p8-1p-J1e" secondAttribute="trailing" constant="8" id="jDT-jR-cv3"/>
                                                 <constraint firstItem="v1P-Cw-fG5" firstAttribute="centerY" secondItem="RWS-Jp-F6d" secondAttribute="centerY" id="lZ3-eW-zlA"/>
+                                                <constraint firstItem="gox-jX-cyA" firstAttribute="top" secondItem="ooO-mE-Dg8" secondAttribute="top" id="n7A-7O-lpm"/>
                                                 <constraint firstItem="0p8-1p-J1e" firstAttribute="baseline" secondItem="70k-Vu-PJ9" secondAttribute="baseline" id="q3y-AT-uq1"/>
+                                                <constraint firstItem="gox-jX-cyA" firstAttribute="leading" secondItem="ooO-mE-Dg8" secondAttribute="leading" id="uah-bY-KUm"/>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="RWS-Jp-F6d" secondAttribute="bottom" constant="22" id="vIE-Ak-XXf"/>
                                                 <constraint firstItem="0p8-1p-J1e" firstAttribute="leading" secondItem="70k-Vu-PJ9" secondAttribute="trailing" constant="8" id="w1K-FR-Ukl"/>
                                             </constraints>
@@ -229,6 +240,7 @@
                     <connections>
                         <outlet property="tableView" destination="Ctl-bI-Eag" id="igH-cX-XMH"/>
                         <segue destination="U2Z-sT-d4N" kind="presentation" identifier="composeSegue" id="yyG-Ad-4eu"/>
+                        <segue destination="2c7-1R-SDf" kind="show" identifier="timelineToProfile" id="AV0-t5-0Ry"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZlF-i2-Ves" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -328,7 +340,7 @@
             </objects>
             <point key="canvasLocation" x="3460" y="35.532233883058474"/>
         </scene>
-        <!--Mentions-->
+        <!--Me-->
         <scene sceneID="fgV-8Y-HHU">
             <objects>
                 <viewController storyboardIdentifier="ProfileViewController" id="2c7-1R-SDf" customClass="ProfileViewController" customModule="twitter_alamofire_demo" customModuleProvider="target" sceneMemberID="viewController">
@@ -566,8 +578,8 @@
                             <constraint firstItem="qWT-T6-SYK" firstAttribute="top" secondItem="VVM-OW-OaD" secondAttribute="bottom" id="uXP-ao-Qnr"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Me" image="profile-Icon" selectedImage="profile-Icon" id="HJw-7y-uw0"/>
-                    <navigationItem key="navigationItem" title="Mentions" id="Pb8-Tx-BQL"/>
+                    <tabBarItem key="tabBarItem" title="Me" image="profile-Icon" selectedImage="profile-Icon" id="VvH-Za-tI1"/>
+                    <navigationItem key="navigationItem" id="Pb8-Tx-BQL"/>
                     <connections>
                         <outlet property="backgroundImage" destination="g1q-no-Gme" id="sTj-TC-HsU"/>
                         <outlet property="followerCountLabel" destination="6NF-QV-0Nm" id="brZ-6p-Rfg"/>
@@ -581,7 +593,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zSO-qj-hmh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2597.5999999999999" y="-672.41379310344837"/>
+            <point key="canvasLocation" x="3536.8000000000002" y="-672.41379310344837"/>
         </scene>
         <!--Home-->
         <scene sceneID="WXZ-z8-8LI">
@@ -693,7 +705,7 @@
                                                     <rect key="frame" x="8" y="8" width="50" height="50"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <connections>
-                                                        <action selector="onProfileTap:" destination="NbO-mi-pYu" eventType="touchUpInside" id="LSk-8c-uJb"/>
+                                                        <action selector="didTapProfile:" destination="NbO-mi-pYu" eventType="touchUpInside" id="sFl-jd-Ryj"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -747,6 +759,7 @@
                     <navigationItem key="navigationItem" title="Notifications" id="zp7-m5-uad"/>
                     <connections>
                         <outlet property="tableView" destination="zUy-hk-BmN" id="GA3-8r-ytd"/>
+                        <segue destination="2c7-1R-SDf" kind="show" identifier="mentionsToProfile" id="sGb-ri-WOX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bL4-kj-Mat" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -766,7 +779,7 @@
                     <connections>
                         <segue destination="RFK-Vv-pWW" kind="relationship" relationship="viewControllers" id="qB0-Qc-ZYF"/>
                         <segue destination="FkC-fB-U54" kind="relationship" relationship="viewControllers" id="wyP-De-QiU"/>
-                        <segue destination="2c7-1R-SDf" kind="relationship" relationship="viewControllers" id="elV-8m-ubN"/>
+                        <segue destination="2c7-1R-SDf" kind="relationship" relationship="viewControllers" id="cPn-WW-sj8"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SrA-3m-0gA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -806,4 +819,7 @@
         <image name="retweet-icon" width="30" height="30"/>
         <image name="retweet-icon-green" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="cPn-WW-sj8"/>
+    </inferredMetricsTieBreakers>
 </document>

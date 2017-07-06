@@ -10,8 +10,8 @@ import UIKit
 import AlamofireImage
 import TTTAttributedLabel
 
-protocol TweetCellDelegate {
-    func didTapReply()
+protocol TweetCellDelegate: class {
+    func didTapProfile(of user: User)
 }
 
 class TweetCell: UITableViewCell {
@@ -34,7 +34,7 @@ class TweetCell: UITableViewCell {
     
     @IBOutlet weak var profileImage: UIImageView!
     
-    // weak var delegate: TweetCellDelegate!
+    weak var delegate: TweetCellDelegate?
     
     
     
@@ -57,6 +57,7 @@ class TweetCell: UITableViewCell {
             usernameLabel.text = tweet.user.screenname
             nameLabel.text = tweet.user.name
             dateLabel.text = tweet.createdAtString
+            // tweetTextLabel.enabledTextCheckingTypes = TextCheckingTypeLink
             
             if tweet.retweetCount != 0 {
                 if tweet.retweetCount >= 1000000 {
@@ -222,6 +223,9 @@ class TweetCell: UITableViewCell {
     }
     
     
+    @IBAction func didTapProfile(_ sender: Any) {
+        delegate?.didTapProfile(of: tweet.user)
+    }
     
     
     
