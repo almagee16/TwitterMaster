@@ -20,6 +20,7 @@ class Tweet {
     var user: User // Contains name, screenname, etc. of tweet author
     var createdAtString: String // Display date
     var detailDateString: String
+    var displayURL: URL?
     
     // MARK: - Create initializer with dictionary
     init(dictionary: [String: Any]) {

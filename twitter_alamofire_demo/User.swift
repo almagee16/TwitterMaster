@@ -51,6 +51,7 @@ class User {
         name = dictionary["name"] as! String
         screenname = "@" + (dictionary["screen_name"] as! String)
         profilePictureUrl = dictionary["profile_image_url_https"] as! String
+        profilePictureUrl = profilePictureUrl.replacingOccurrences(of: "normal", with: "bigger")
         
         if dictionary["profile_banner_url"] != nil {
             backgroundUrl = dictionary["profile_banner_url"] as! String

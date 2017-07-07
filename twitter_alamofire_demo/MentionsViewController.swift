@@ -20,12 +20,16 @@ class MentionsViewController: UIViewController, UITableViewDelegate, UITableView
     let refreshControl = UIRefreshControl()
 
     override func viewWillAppear(_ animated: Bool) {
-            print ("it gets to view will disappear")
-            self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-            self.navigationController?.navigationBar.shadowImage = UIImage()
-            self.navigationController?.navigationBar.isTranslucent = false
-            self.navigationController?.view.backgroundColor = .clear
-            self.navigationController!.navigationBar.backgroundColor = UIColor(red: (247.0 / 255.0), green: (247.0 / 255.0), blue: (247.0 / 255.0), alpha: 1)
+//            print ("it gets to view will disappear")
+//            self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//            self.navigationController?.navigationBar.shadowImage = UIImage()
+//            self.navigationController?.navigationBar.isTranslucent = false
+//            self.navigationController?.view.backgroundColor = .clear
+//            self.navigationController!.navigationBar.backgroundColor = UIColor(red: (247.0 / 255.0), green: (247.0 / 255.0), blue: (247.0 / 255.0), alpha: 1)
+        
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.view.backgroundColor = UIColor.white
+
         
         tableView.reloadData()
         
